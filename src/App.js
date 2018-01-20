@@ -1,18 +1,27 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
+import React, {Component} from 'react'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import AppBar from 'material-ui/AppBar'
+import mainTheme from './assets/styles/mainTheme'
+
+import logo from './assets/img/logo.svg'
 import './App.css'
 
+
+const TopBar = () =>
+  <AppBar
+    title = 'Marker'
+  />
+
+
 const App = () =>
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">
-        Marker
-      </h1>
-    </header>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-  </div>
+  <MuiThemeProvider muiTheme={getMuiTheme(mainTheme)}>
+    <TopBar/>
+    <div className='App'>
+      <p className='App-intro'>
+        Cool contents go here.
+      </p>
+    </div>
+  </MuiThemeProvider>
 
 export default App
