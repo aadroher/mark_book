@@ -8,48 +8,26 @@ import {
   TableRowColumn,
 } from 'material-ui/Table'
 
-const tableHeader = activities =>
+const tableHeader = header =>
   <TableHeader>
     <TableRow>
-      <TableHeaderColumn>
-        Name
-      </TableHeaderColumn>
-      {activities.map(activity =>
-        <TableHeaderColumn>
-          {activity.name}
+      {header.map(cell =>
+        <TableHeaderColumn key={cell.key}>
+          {cell.value}
         </TableHeaderColumn>
       )}
     </TableRow>
   </TableHeader>
 
-const getRows = (state, groupId) =>
-  state.enrolments
-    .filter(enrolment =>
-      enrolment.group_id === groupId
-    )
-    .map(enrolment => {
-      const student = state.students
-        .find(student =>
-          student.id === enrolment.student_id
-        )
-      const activities = state.activities
-        .filter(activity =>
-          activity.id === groupId
-        )
-
-      return [student, ...activities]
-    })
-
-const tableBody = (state, groupId) =>
+const tableBody = rows =>
   <TableBody>
-    {
-      getRows(state, groupId)
-        .map(row =>
-          <TableRow>
+    {rows
+      .map((row, i) =>
+          <TableRow key={i}>
             {
               row.map(cell =>
-                <TableRowColumn>
-                  {JSON.stringify(cell)}
+                <TableRowColumn key={cell.key}>
+                  {cell.value}
                 </TableRowColumn>
               )
             }
@@ -58,19 +36,14 @@ const tableBody = (state, groupId) =>
     }
   </TableBody>
 
-
 const MarkTable = props => {
-  console.log(props.store.getState())
-  const state = props.store.getState()
-  const groupId = props.groupId
-  const activities = state.activities
-    .filter(activity =>
-      activity.id === groupId
-    )
+  console.log(props)
+  const header = props.header
+  const rows = props.rows
   return (
     <Table>
-      {tableHeader(activities)}
-      {tableBody(state, groupId)}
+      {tableHeader(header)}
+      {tableBody(rows)}
     </Table>
   )
 }
