@@ -10,9 +10,10 @@ describe('Group actions', () => {
       expect(action.type).toBe(types.SELECT_GROUP)
     })
 
-    it('passes the right id value', () => {
-      const action = selectGroup(1)
-      console.log(action)
+    it('payload contains the right id value', () => {
+      const expectedId = 1984
+      const action = selectGroup({id: expectedId})
+      expect(action.payload.id).toBe(expectedId)
     })
 
   })

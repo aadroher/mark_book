@@ -1,8 +1,6 @@
-import Enum from 'es6-enum'
-
-const types = Enum(
-  'SELECT_GROUP'
-)
+const types = {
+  SELECT_GROUP: 'SELECT_GROUP'
+}
 
 export default types
 
