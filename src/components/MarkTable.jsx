@@ -37,7 +37,6 @@ const tableBody = rows =>
   </TableBody>
 
 const MarkTable = props => {
-  console.log(props)
   const header = props.header
   const rows = props.rows
   return (

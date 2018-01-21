@@ -1,3 +1,5 @@
+import types from '../actions/types'
+
 const initialState = {
   resources: {
     students: [
@@ -78,7 +80,19 @@ const initialState = {
   selectedGroupId: 1
 }
 
-const rootReducer = (state = initialState, action) =>
-  state
+const selectGroup = (state, groupId) =>
+  Object.assign({}, state, {
+    selectedGroupId: groupId
+  })
+
+
+const rootReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case types.SELECT_GROUP:
+      return selectGroup(state, action.payload.id)
+    default:
+      return Object.assign({}, state)
+  }
+}
 
 export default rootReducer
