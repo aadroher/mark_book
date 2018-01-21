@@ -24,7 +24,6 @@ const store = createStore(
   composeWithParams
 )
 
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

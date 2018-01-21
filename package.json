@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "enzyme": "^3.3.0",
     "es6-enum": "^1.1.0",
     "history": "^4.7.2",
     "material-ui": "^0.20.0",
