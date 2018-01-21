@@ -9,10 +9,14 @@ import {
 } from 'material-ui/Table'
 
 const tableHeader = header =>
-  <TableHeader>
+  <TableHeader
+    displaySelectAll={false}
+    adjustForCheckbox={false}>
     <TableRow>
       {header.map(cell =>
-        <TableHeaderColumn key={cell.key}>
+        <TableHeaderColumn
+          key={cell.key}
+        >
           {cell.value}
         </TableHeaderColumn>
       )}
@@ -20,27 +24,32 @@ const tableHeader = header =>
   </TableHeader>
 
 const tableBody = rows =>
-  <TableBody>
+  <TableBody
+    displayRowCheckbox={false}>
     {rows
       .map((row, i) =>
-          <TableRow key={i}>
-            {
-              row.map(cell =>
-                <TableRowColumn key={cell.key}>
-                  {cell.value}
-                </TableRowColumn>
-              )
-            }
-          </TableRow>
-        )
+        <TableRow key={i}>
+          {
+            row.map(cell =>
+              <TableRowColumn key={cell.key}>
+                {cell.value}
+              </TableRowColumn>
+            )
+          }
+        </TableRow>
+      )
     }
   </TableBody>
+
+
 
 const MarkTable = props => {
   const header = props.header
   const rows = props.rows
   return (
-    <Table>
+    <Table
+      selectable={false}
+    >
       {tableHeader(header)}
       {tableBody(rows)}
     </Table>

@@ -1,21 +1,26 @@
 import {connect} from 'react-redux'
 import MarkTable from '../components/MarkTable'
 
-const getHeader = (resources, groupId) =>
-  [
+const getHeader = (resources, groupId) => {
+  const activities = resources.activities
+    .filter(activity =>
+      activity.group_id === groupId
+    )
+    .map(activity => ({
+      key: activity.id,
+      value: activity.name
+    }))
+
+  console.log(activities)
+
+  return [
     {
       key: 0,
       value: 'Student'
     },
-    ...resources.activities
-      .filter(activity =>
-        activity.id === groupId
-      )
-      .map(activity => ({
-        key: activity.id,
-        value: activity.name
-      }))
+    ...activities
   ]
+}
 
 const getStudentCell = student => ({
   key: student.id,
@@ -41,7 +46,7 @@ const getRows = (resources, groupId) =>
 
       const activities = resources.activities
         .filter(activity =>
-          activity.id === groupId
+          activity.group_id === groupId
         )
         .map(getAssessmentCell)
 
