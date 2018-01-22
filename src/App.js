@@ -11,7 +11,6 @@ import GroupMarkTable from './containers/GroupMarkTable'
 import './App.css'
 
 const App = () =>
-  <MuiThemeProvider muiTheme={getMuiTheme(mainTheme)}>
     <div>
       <TopBar/>
       <GroupSelector/>
@@ -19,6 +18,5 @@ const App = () =>
         <GroupMarkTable/>
       </div>
     </div>
-  </MuiThemeProvider>
 
 export default App

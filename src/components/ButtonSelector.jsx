@@ -5,7 +5,7 @@ const ButtonSelector = props =>
   <div>
     {
       props.options.map((option, i) =>
-        <FlatButton
+        <button
           key={i}
           label={option.label}
           disabled={option.id === props.selectedGroupId}
