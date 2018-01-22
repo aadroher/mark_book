@@ -7,12 +7,15 @@ import GroupMarkTable from './containers/GroupMarkTable'
 import './App.css'
 
 const App = () =>
-    <div>
-      <TopBar/>
+  <div>
+    <TopBar/>
+    <div className="app-container">
       <GroupSelector/>
       <div className='App'>
         <GroupMarkTable/>
       </div>
     </div>
+  </div>
+
 
 export default App
