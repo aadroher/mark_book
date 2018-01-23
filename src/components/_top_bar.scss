@@ -2,12 +2,12 @@
 
 .top-bar {
   @extend .navbar,
-          .navbar-brand,
+          .navbar-expand,
           .fixed-top,
           .navbar-light,
           .bg-light;
 
-  .app-name {
+  > .app-name {
     @extend .navbar-brand;
   }
 }

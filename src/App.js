@@ -10,9 +10,13 @@ const App = () =>
   <div>
     <TopBar/>
     <div className="app-container">
-      <GroupSelector/>
-      <div className='App'>
-        <GroupMarkTable/>
+      <div>
+        <div>
+          <GroupSelector/>
+          <div className='App'>
+            <GroupMarkTable/>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -2,9 +2,12 @@ import React, {Component} from 'react'
 
 const TopBar = () =>
   <nav className="top-bar">
-    <a className="app-name">
-      Mark Book
-    </a>
+    <div className="container-fluid">
+      <a className="app-name"
+         href="/">
+        Mark Book
+      </a>
+    </div>
   </nav>
 
 export default TopBar
