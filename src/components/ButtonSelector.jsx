@@ -1,19 +1,52 @@
 import React from 'react'
 
-const ButtonSelector = props =>
-  <div>
-    {
-      props.options.map((option, i) =>
-        <button
-          key={i}
-          label={option.label}
-          disabled={option.id === props.selectedGroupId}
-          onClick={_ => {
-            props.onGroupNameClick(option.id)
-          }}
-        />
-      )
-    }
-  </div>
+const NavigationLink = props => {
+  const isActive = props.selectedGroupId === props.option.id
+  const className = `nav-link ${isActive ? 'active' : ''}`
+  const href = '#'
 
-export default ButtonSelector
+  const properties = {
+    className,
+    href,
+    onClick: props.onClick
+  }
+
+  return (
+    <a {...properties}>
+      {props.option.label}
+    </a>
+  )
+}
+
+const NavigationItem = props =>
+  <li className="nav-item">
+    <NavigationLink {...props}/>
+  </li>
+
+const NavigationPills = props => {
+  const navigationItems = props.options.map((option, i) => {
+    const onClick = e => {
+      e.preventDefault()
+      props.onGroupNameClick(option.id)
+    }
+    const properties = {
+      selectedGroupId: props.selectedGroupId,
+      option,
+      onClick
+    }
+    return (
+      <NavigationItem
+        key={i}
+        {...properties}
+      />
+    )
+  })
+
+  return (
+    <ul className="nav nav-pills">
+      {navigationItems}
+    </ul>
+  )
+}
+
+export default NavigationPills

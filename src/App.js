@@ -9,11 +9,15 @@ import './App.css'
 const App = () =>
   <div>
     <TopBar/>
-    <div className="app-container">
-      <div>
-        <div>
+    <div className='app-container'>
+      <div className='row'>
+        <div className='col'>
           <GroupSelector/>
-          <div className='App'>
+        </div>
+      </div>
+      <div>
+        <div className='row'>
+          <div className='col'>
             <GroupMarkTable/>
           </div>
         </div>

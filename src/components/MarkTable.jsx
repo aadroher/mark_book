@@ -1,9 +1,7 @@
 import React from 'react'
 
 const tableHeader = header =>
-  <thead
-    displaySelectAll={false}
-    adjustForCheckbox={false}>
+  <thead>
     <tr>
       {header.map(cell =>
         <th
@@ -16,14 +14,13 @@ const tableHeader = header =>
   </thead>
 
 const tableBody = rows =>
-  <tbody
-    displayRowCheckbox={false}>
+  <tbody>
     {rows
       .map((row, i) =>
         <tr key={i}>
           {
-            row.map(cell =>
-              <td key={cell.key}>
+            row.map((cell, j) =>
+              <td key={`${i}-${j}`}>
                 {cell.value}
               </td>
             )
@@ -39,9 +36,7 @@ const MarkTable = props => {
   const header = props.header
   const rows = props.rows
   return (
-    <table
-      selectable={false}
-    >
+    <table className='table'>
       {tableHeader(header)}
       {tableBody(rows)}
     </table>
