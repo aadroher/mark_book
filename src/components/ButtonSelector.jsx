@@ -1,8 +1,10 @@
 import React from 'react'
 
+import './button_selector.css'
+
 const NavigationLink = props => {
   const isActive = props.selectedGroupId === props.option.id
-  const className = `nav-link ${isActive ? 'active' : ''}`
+  const className = `nav-link ${isActive ? 'disabled' : ''}`
   const href = '#'
 
   const properties = {
@@ -43,7 +45,7 @@ const NavigationPills = props => {
   })
 
   return (
-    <ul className="nav nav-pills">
+    <ul className="nav">
       {navigationItems}
     </ul>
   )
