@@ -102,40 +102,6 @@ const getRows = (resources, groupId) => {
   return addRowPadding(studentRows, paddingSize)
 }
 
-// const getRows = (resources, groupId) => {
-//   const enrolments = resources.enrolments
-//     .filter(enrolment =>
-//       enrolment.group_id === groupId
-//     )
-//     .map(enrolment => {
-//       const [student] = resources.students
-//         .filter(student =>
-//           student.id === enrolment.student_id
-//         )
-//         .map(getStudentCell)
-//
-//       const activities = resources.activities
-//         .filter(activity =>
-//           activity.group_id === groupId
-//         )
-//         .map(getAssessmentCell)
-//
-//       const numActivities = activities.length
-//       const paddingSize = minDimensions.columns - numActivities
-//
-//       return [
-//         student,
-//         ...addColumnPadding(activities, paddingSize)
-//       ]
-//     })
-//
-//   const numEnrolments = enrolments.length
-//   const paddingSize = minDimensions.rows - numEnrolments
-//
-//   return addRowPadding(enrolments, paddingSize)
-// }
-
-
 const mapStateToProps = state => {
   const resources = state.resources
   const groupId = state.selectedGroupId

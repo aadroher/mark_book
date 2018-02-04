@@ -94,6 +94,10 @@ $theta: 45deg;
     max-width: $studentCellWidth;
   }
 
+  .row-num-column {
+    text-align: right;
+  }
+
   .rotated {
     height: $headerCellHeight;
     width: $headerCellWidth;
