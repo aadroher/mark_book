@@ -2,12 +2,12 @@ import React from 'react'
 
 import styles from './MarkTable.module.css'
 
-const StudentsHeader = ({ cell }) =>
-  <th scope='col'>
+const StudentsHeader = ({cell}) =>
+  <th scope='col' className={styles['student-column']}>
     {cell.value}
   </th>
 
-const ActivityHeader = ({ cell }) =>
+const ActivityHeader = ({cell}) =>
   <th scope='col' className={styles['rotated']}>
     <div>
       <span>
@@ -16,18 +16,28 @@ const ActivityHeader = ({ cell }) =>
     </div>
   </th>
 
-const Header = ({ header }) =>
+const Header = ({header}) =>
   <thead>
     <tr>
       {
         header.map((cell, i) =>
           i === 0
-            ? <StudentsHeader cell={cell} key={i} />
-            : <ActivityHeader cell={cell} key={i} />
+            ? <StudentsHeader cell={cell} key={i}/>
+            : <ActivityHeader cell={cell} key={i}/>
         )
       }
     </tr>
   </thead>
+
+const StudentCell = ({cell}) =>
+  <th scope='row' className={styles['student-column']}>
+    {cell.value}
+  </th>
+
+const MarkCell = ({cell}) =>
+  <td>
+    {cell.value}
+  </td>
 
 const tableBody = rows =>
   <tbody>
@@ -37,16 +47,8 @@ const tableBody = rows =>
           {
             row.map((cell, j) =>
               j === 0
-                ? (
-                  <td scope='row' key={`${i}-${j}`}>
-                    {cell.value}
-                  </td>
-                )
-                : (
-                  <th key={`${i}-${j}`}>
-                    {cell.value}
-                  </th>
-                )
+                ? <StudentCell {...{cell}} key={`${i}-${j}`}/>
+                : <MarkCell {...{cell}} key={`${i}-${j}`}/>
             )
           }
         </tr>
@@ -60,7 +62,7 @@ const MarkTable = props => {
   const rows = props.rows
   return (
     <table className={styles['mark-table']}>
-      <Header { ...props }/>
+      <Header {...props}/>
       {tableBody(rows)}
     </table>
   )
