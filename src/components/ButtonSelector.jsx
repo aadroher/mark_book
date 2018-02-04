@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './button_selector.css'
+import './_button_selector.css'
 
 const NavigationLink = props => {
   const isActive = props.selectedGroupId === props.option.id
