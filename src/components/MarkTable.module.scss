@@ -1,5 +1,73 @@
 @import "~bootstrap/scss/bootstrap";
 
+$phi: 1.618;
+$studentCellWidth: 10rem;
+$headerCellHeight: $studentCellWidth / $phi;
+$headerCellWidth: 3.2rem;
+$theta: 45deg;
+
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  }
+  @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+
+@function fact($number) {
+  $value: 1;
+  @if $number > 0 {
+    @for $i from 1 through $number {
+      $value: $value * $i;
+    }
+  }
+  @return $value;
+}
+
+@function pi() {
+  @return 3.14159265359;
+}
+
+@function rad($angle) {
+  $unit: unit($angle);
+  $unitLess: $angle / ($angle * 0 + 1);
+  // If the angle has 'deg' as unit, convert to radians.
+  @if $unit == deg {
+    $unitLess: $unitLess / 180 * pi();
+  }
+  @return $unitLess;
+}
+
+@function sin($angle) {
+  $sin: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+  }
+  @return $sin;
+}
+
+@function cos($angle) {
+  $cos: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+  }
+  @return $cos;
+}
+
+@function tan($angle) {
+  @return sin($angle) / cos($angle);
+}
 
 .mark-table {
   @extend .table,
@@ -20,44 +88,44 @@
   }
 
   .student-column {
-    width: 200px;
+    @extend .text-truncate;
+    width: $studentCellWidth;
+    max-width: $studentCellWidth;
   }
 
   .rotated {
-    height: 80px;
-    width: 50px;
-    //min-width: 40px;
-    //max-width: 40px;
+    height: $headerCellHeight;
+    width: $headerCellWidth;
+    min-width: $headerCellWidth;
+    max-width: $headerCellWidth;
     position: relative;
     vertical-align: bottom;
     padding: 0;
-    line-height: 0.8;
-    //height: 140px;
     white-space: nowrap;
 
     > div {
       position: relative;
       top: 0;
-      left: 40px; /* 80 * tan(45) / 2 = 40 where 80 is the height on the cell and 45 is the transform angle*/
+      /* 80 * tan(45) / 2 = 40 where 80 is the height on the cell and 45 is the transform angle*/
+      left: $headerCellWidth;
       height: 100%;
-
-      //transform:  translate(25px, 51px)
-      //            rotate(315deg);
-      //width: 30px;
-      transform:skew(-45deg,0deg);
+      transform:skew(-$theta, 0deg);
       overflow: hidden;
       border-left: 1px solid #dddddd;
       border-right: 1px solid #dddddd;
       border-top: 1px solid #dddddd;
 
       > span {
-        transform:skew(45deg,0deg) rotate(315deg);
+
+        transform:skew($theta,0deg) rotate(360deg - 45deg);
         position: absolute;
-        bottom: 30px; /* 40 cos(45) = 28 with an additional 2px margin*/
-        left: -25px; /*Because it looked good, but there is probably a mathematical link here as well*/
+        //bottom: 30px; /* 40 cos(45) = 28 with an additional 2px margin*/
+        bottom: $headerCellWidth * cos($theta) + 0.1rem;
+        left: - ($headerCellWidth / 2); /*Because it looked good, but there is probably a mathematical link here as well*/
         display: inline-block;
 
-        width: 85px; /* 80 / cos(45) - 40 cos (45) = 85 where 80 is the height of the cell, 40 the width of the cell and 45 the transform angle*/
+        // 80 / cos(45) - 40 cos (45) = 85 where 80 is the height of the cell, 40 the width of the cell and 45 the transform angle
+        width: $headerCellHeight / cos($theta) - $headerCellWidth * cos($theta);
         text-align: left;
       }
     }
