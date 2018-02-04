@@ -19,6 +19,7 @@ const ActivityHeader = ({cell}) =>
 const Header = ({header}) =>
   <thead>
     <tr>
+      <th></th>
       {
         header.map((cell, i) =>
           i === 0
@@ -29,10 +30,13 @@ const Header = ({header}) =>
     </tr>
   </thead>
 
+const RowNumCell = ({ i }) =>
+  <td> {i} </td>
+
 const StudentCell = ({cell}) =>
-  <th scope='row' className={styles['student-column']}>
+  <td className={styles['student-column']}>
     {cell.value}
-  </th>
+  </td>
 
 const MarkCell = ({cell}) =>
   <td>
@@ -44,6 +48,7 @@ const tableBody = rows =>
     {rows
       .map((row, i) =>
         <tr key={i}>
+          <RowNumCell i={i + 1}/>
           {
             row.map((cell, j) =>
               j === 0
