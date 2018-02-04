@@ -1,4 +1,4 @@
-@import "bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 
 .top-bar {
   @extend .navbar,
@@ -6,7 +6,6 @@
           .fixed-top,
           .navbar-light,
           .bg-light;
-
   > .app-name {
     @extend .navbar-brand;
   }

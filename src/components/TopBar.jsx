@@ -1,12 +1,13 @@
-import React, {Component} from 'react'
+import React from 'react'
+
+import styles from './TopBar.module.css'
 
 const TopBar = () =>
-  <nav className="top-bar">
-    <div className="container-fluid">
-      <a className="app-name"
-         href="/">
+  <nav className={styles['top-bar']}>
+    <div>
+      <span className='app-name'>
         Mark Book
-      </a>
+      </span>
     </div>
   </nav>
 
