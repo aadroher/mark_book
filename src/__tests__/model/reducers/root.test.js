@@ -1,5 +1,5 @@
-import types from '../../actions/types'
-import rootReducer from '../../reducers/root'
+import types from '../../../intent/actions/types'
+import rootReducer from '../../../model/reducers/root'
 
 describe('Root reducer', () => {
 

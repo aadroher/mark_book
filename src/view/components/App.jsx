@@ -1,7 +1,7 @@
 import React from 'react'
-import GroupSelector from './containers/GroupSelector'
-import GroupMarkTable from './containers/GroupMarkTable'
-import TopBar from './components/TopBar'
+import GroupSelector from '../../intent/containers/GroupSelector'
+import GroupMarkTable from '../../intent/containers/GroupMarkTable'
+import TopBar from './TopBar'
 
 import styles from './App.module.css'
 

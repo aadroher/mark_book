@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import ButtonSelector from '../components/ButtonSelector'
+import ButtonSelector from '../../view/components/ButtonSelector'
 
 import { selectGroup } from '../actions/groupActions'
 

@@ -7,10 +7,10 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
-import rootReducer from './reducers/root'
+import rootReducer from './model/reducers/root'
 
-import './index.css'
-import App from './App'
+import './view/styles/index.css'
+import App from './view/components/App'
 import registerServiceWorker from './registerServiceWorker'
 
 const middleware = applyMiddleware(createLogger(), thunk)

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import MarkTable from '../components/MarkTable'
+import MarkTable from '../../view/components/MarkTable'
 
 const minDimensions = {
   rows: 40,
