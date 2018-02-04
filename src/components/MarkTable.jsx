@@ -1,14 +1,10 @@
 import React from 'react'
 
 const tableHeader = header =>
-  <thead
-    displaySelectAll={false}
-    adjustForCheckbox={false}>
+  <thead>
     <tr>
-      {header.map(cell =>
-        <th
-          key={cell.key}
-        >
+      {header.map((cell, i) =>
+        <th key={i} >
           {cell.value}
         </th>
       )}
@@ -16,14 +12,13 @@ const tableHeader = header =>
   </thead>
 
 const tableBody = rows =>
-  <tbody
-    displayRowCheckbox={false}>
+  <tbody>
     {rows
       .map((row, i) =>
         <tr key={i}>
           {
-            row.map(cell =>
-              <td key={cell.key}>
+            row.map((cell, j) =>
+              <td key={j}>
                 {cell.value}
               </td>
             )
@@ -34,14 +29,11 @@ const tableBody = rows =>
   </tbody>
 
 
-
 const MarkTable = props => {
   const header = props.header
   const rows = props.rows
   return (
-    <table
-      selectable={false}
-    >
+    <table>
       {tableHeader(header)}
       {tableBody(rows)}
     </table>
