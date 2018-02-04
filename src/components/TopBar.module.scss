@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/bootstrap";
+
+.top-bar {
+  @extend .navbar,
+          .navbar-expand,
+          .fixed-top,
+          .navbar-light,
+          .bg-light;
+  > .app-name {
+    @extend .navbar-brand;
+  }
+}

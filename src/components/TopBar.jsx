@@ -1,9 +1,14 @@
-import React, {Component} from 'react'
-import AppBar from 'material-ui/AppBar'
+import React from 'react'
+
+import styles from './TopBar.module.css'
 
 const TopBar = () =>
-  <AppBar
-    title = 'Marker'
-  />
+  <nav className={styles['top-bar']}>
+    <div>
+      <span className='app-name'>
+        Mark Book
+      </span>
+    </div>
+  </nav>
 
 export default TopBar

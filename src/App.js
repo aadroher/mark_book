@@ -1,24 +1,25 @@
-import React, {Component} from 'react'
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import mainTheme from './assets/styles/mainTheme'
-
-import TopBar from './components/TopBar'
+import React from 'react'
 import GroupSelector from './containers/GroupSelector'
 import GroupMarkTable from './containers/GroupMarkTable'
+import TopBar from './components/TopBar'
 
-import './App.css'
+import styles from './App.module.css'
 
 const App = () =>
-  <MuiThemeProvider muiTheme={getMuiTheme(mainTheme)}>
+  <div className={styles['app-container']}>
+    <TopBar/>
     <div>
-      <TopBar/>
-      <GroupSelector/>
-      <div className='App'>
+      <div>
+        <GroupSelector/>
+      </div>
+    </div>
+    <div>
+      <div>
         <GroupMarkTable/>
       </div>
     </div>
-  </MuiThemeProvider>
+  </div>
+
+
 
 export default App

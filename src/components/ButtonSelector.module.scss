@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/bootstrap";
+
+.button-selector {
+
+  @extend .nav;
+
+  > li {
+    @extend .nav-item;
+
+    > a {
+      @extend .nav-link;
+    }
+
+    .selected {
+      @extend .disabled;
+      cursor: default;
+    }
+
+  }
+
+}
