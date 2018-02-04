@@ -11,8 +11,6 @@ const getHeader = (resources, groupId) => {
       value: activity.name
     }))
 
-  console.log(activities)
-
   return [
     {
       key: 0,

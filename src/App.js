@@ -2,17 +2,17 @@ import React from 'react'
 import GroupSelector from './containers/GroupSelector'
 import GroupMarkTable from './containers/GroupMarkTable'
 
-import './App.css'
+import styles from './App.module.css'
 
 const App = () =>
-  <div className='container-fluid'>
-    <div className='row'>
-      <div className='col'>
+  <div className={styles['app-container']}>
+    <div>
+      <div>
         <GroupSelector/>
       </div>
     </div>
-    <div className='row'>
-      <div className='col'>
+    <div>
+      <div>
         <GroupMarkTable/>
       </div>
     </div>

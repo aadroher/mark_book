@@ -1,15 +1,17 @@
 import React from 'react'
 
-import './_button_selector.css'
+import styles from './ButtonSelector.module.css'
 
 const NavigationLink = props => {
-  const isActive = props.selectedGroupId === props.option.id
-  const className = `nav-link ${isActive ? 'disabled' : ''}`
+  const disabled = props.option.disabled
+  const className = disabled
+    ? styles.selected
+    : undefined
   const href = '#'
 
   const properties = {
-    className,
     href,
+    className,
     onClick: props.onClick
   }
 
@@ -21,7 +23,7 @@ const NavigationLink = props => {
 }
 
 const NavigationItem = props =>
-  <li className="nav-item">
+  <li>
     <NavigationLink {...props}/>
   </li>
 
@@ -32,7 +34,6 @@ const NavigationPills = props => {
       props.onGroupNameClick(option.id)
     }
     const properties = {
-      selectedGroupId: props.selectedGroupId,
       option,
       onClick
     }
@@ -45,7 +46,7 @@ const NavigationPills = props => {
   })
 
   return (
-    <ul className="nav">
+    <ul className={styles['button-selector']}>
       {navigationItems}
     </ul>
   )

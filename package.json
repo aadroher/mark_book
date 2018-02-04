@@ -21,8 +21,8 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src src/ -o src/ --importer=node_modules/node-sass-tilde-importer",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src src/ -o src/ --watch --recursive --importer=node_modules/node-sass-tilde-importer",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
@@ -33,6 +33,7 @@
   "devDependencies": {
     "eslint": "^4.16.0",
     "eslint-plugin-react": "^7.6.1",
+    "node-sass-tilde-importer": "^1.0.1",
     "redux-devtools": "^3.4.1"
   }
 }

@@ -7,8 +7,8 @@ const mapStateToProps = state => ({
   options: state.resources.groups.map(group => ({
     id: group.id,
     label: group.name,
+    disabled: group.id === state.selectedGroupId
   })),
-  selectedGroupId: state.selectedGroupId
 })
 
 const mapDispatechToProps = dispatch => ({

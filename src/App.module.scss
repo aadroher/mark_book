@@ -1,9 +1,8 @@
-@import "bootstrap/scss/bootstrap";
-@import "variables";
-@import "./components/top_bar";
+@import "~bootstrap/scss/bootstrap";
+@import "./variables";
 
 body {
-  //padding-top: 4em;
+  padding-top: 4em;
 }
 
 .app-container {
