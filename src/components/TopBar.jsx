@@ -5,7 +5,7 @@ import styles from './TopBar.module.css'
 const TopBar = () =>
   <nav className={styles['top-bar']}>
     <div>
-      <span className='app-name'>
+      <span className={styles['app-name']}>
         Mark Book
       </span>
     </div>
