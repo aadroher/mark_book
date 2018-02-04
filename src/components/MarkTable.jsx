@@ -1,4 +1,12 @@
 import React from 'react'
+import styled from 'styled-jss'
+
+const StyledTable = styled('table')({
+  'border': 'solid',
+  '> row': {
+    'border': 'solid'
+  }
+})
 
 const tableHeader = header =>
   <thead>
@@ -28,15 +36,14 @@ const tableBody = rows =>
     }
   </tbody>
 
-
 const MarkTable = props => {
   const header = props.header
   const rows = props.rows
   return (
-    <table>
+    <StyledTable>
       {tableHeader(header)}
       {tableBody(rows)}
-    </table>
+    </StyledTable>
   )
 }
 
