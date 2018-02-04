@@ -59,16 +59,27 @@ const getAssessmentCell = activity => ({
 })
 
 const getRows = (resources, groupId) => {
-  const enrolments = resources.enrolments
+  const groupEnrolments = resources.enrolments
     .filter(enrolment =>
       enrolment.group_id === groupId
     )
+
+  const enrolmentsWithStudents = groupEnrolments.map(enrolment => {
+    const [ student ] = resources.students
+      .filter(student =>
+        student.id === enrolment.student_id
+      )
+    return Object.assign({}, enrolment, { student })
+  })
+
+  const studentComparator = (e0, e1) =>
+    e0.student.surname.localeCompare(e1.student.surname)
+
+  const sortedEnrolments = enrolmentsWithStudents.sort(studentComparator)
+  const studentRows = sortedEnrolments
     .map(enrolment => {
-      const [student] = resources.students
-        .filter(student =>
-          student.id === enrolment.student_id
-        )
-        .map(getStudentCell)
+      const { student } = enrolment
+      const studentCell = getStudentCell(student)
 
       const activities = resources.activities
         .filter(activity =>
@@ -80,16 +91,49 @@ const getRows = (resources, groupId) => {
       const paddingSize = minDimensions.columns - numActivities
 
       return [
-        student,
+        studentCell,
         ...addColumnPadding(activities, paddingSize)
       ]
     })
 
-  const numEnrolments = enrolments.length
-  const paddingSize = minDimensions.rows - numEnrolments
+  const numStudents = studentRows.length
+  const paddingSize = minDimensions.rows - numStudents
 
-  return addRowPadding(enrolments, paddingSize)
+  return addRowPadding(studentRows, paddingSize)
 }
+
+// const getRows = (resources, groupId) => {
+//   const enrolments = resources.enrolments
+//     .filter(enrolment =>
+//       enrolment.group_id === groupId
+//     )
+//     .map(enrolment => {
+//       const [student] = resources.students
+//         .filter(student =>
+//           student.id === enrolment.student_id
+//         )
+//         .map(getStudentCell)
+//
+//       const activities = resources.activities
+//         .filter(activity =>
+//           activity.group_id === groupId
+//         )
+//         .map(getAssessmentCell)
+//
+//       const numActivities = activities.length
+//       const paddingSize = minDimensions.columns - numActivities
+//
+//       return [
+//         student,
+//         ...addColumnPadding(activities, paddingSize)
+//       ]
+//     })
+//
+//   const numEnrolments = enrolments.length
+//   const paddingSize = minDimensions.rows - numEnrolments
+//
+//   return addRowPadding(enrolments, paddingSize)
+// }
 
 
 const mapStateToProps = state => {
