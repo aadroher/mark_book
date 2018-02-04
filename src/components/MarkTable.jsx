@@ -30,8 +30,10 @@ const Header = ({header}) =>
     </tr>
   </thead>
 
-const RowNumCell = ({ i }) =>
-  <td> {i} </td>
+const RowNumCell = ({i}) =>
+  <td className={styles['row-num-column']}>
+    {i}
+  </td>
 
 const StudentCell = ({cell}) =>
   <td className={styles['student-column']}>
