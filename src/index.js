@@ -10,7 +10,7 @@ import { createLogger } from 'redux-logger'
 import rootReducer from './model/reducers/root'
 
 import './view/styles/index.css'
-import App from './view/components/App'
+import App from './view/layouts/default/App'
 import registerServiceWorker from './registerServiceWorker'
 
 const middleware = applyMiddleware(createLogger(), thunk)

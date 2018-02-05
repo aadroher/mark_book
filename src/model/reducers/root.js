@@ -6,7 +6,6 @@ const selectGroup = (state, groupId) =>
     selectedGroupId: groupId
   })
 
-
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
   case types.SELECT_GROUP:
