@@ -1,4 +1,6 @@
 import React from 'react'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faSortDown } from '@fortawesome/fontawesome-free-solid'
 
 import styles from './MarkTable.module.css'
 
@@ -19,7 +21,9 @@ const ActivityHeader = ({cell}) =>
 const Header = ({header}) =>
   <thead>
     <tr>
-      <th></th>
+      <th className={styles['row-num-column']}>
+        <FontAwesomeIcon icon={faSortDown}/>
+      </th>
       {
         header.map((cell, i) =>
           i === 0
