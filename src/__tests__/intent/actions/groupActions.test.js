@@ -1,5 +1,5 @@
-import types from '../../actions/types'
-import { selectGroup } from '../../actions/groupActions'
+import types from '../../../intent/actions/types'
+import { selectGroup } from '../../../intent/actions/groupActions'
 
 describe('Group actions', () => {
 

@@ -27,7 +27,7 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom --coverage --watch",
+    "test": "react-scripts test --env=jsdom --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
