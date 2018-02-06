@@ -85,7 +85,8 @@ const initialState = {
       }
     ]
   },
-  selectedGroupId: 1
+  selectedGroupId: 1,
+  sortDirection: 'asc'
 }
 
 export default initialState

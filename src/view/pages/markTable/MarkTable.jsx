@@ -1,8 +1,6 @@
 import React from 'react'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faSortDown } from '@fortawesome/fontawesome-free-solid'
-
 import styles from './MarkTable.module.css'
+import MarkTableSorter from '../../../intent/containers/MarkTableSorter'
 
 const StudentsHeader = ({cell}) =>
   <th scope='col' className={styles['student-column']}>
@@ -22,7 +20,7 @@ const Header = ({header}) =>
   <thead>
     <tr>
       <th className={styles['row-num-column']}>
-        <FontAwesomeIcon icon={faSortDown}/>
+        <MarkTableSorter/>
       </th>
       {
         header.map((cell, i) =>
