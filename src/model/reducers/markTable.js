@@ -1,0 +1,7 @@
+
+const markTable = (state, action) => {
+
+
+
+
+}

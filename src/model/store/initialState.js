@@ -85,6 +85,7 @@ const initialState = {
       }
     ]
   },
+  markTable: [],
   selectedGroupId: 1,
   sortDirection: 'asc'
 }
