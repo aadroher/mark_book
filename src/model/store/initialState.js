@@ -85,9 +85,16 @@ const initialState = {
       }
     ]
   },
-  markTable: [],
+  markTable: {
+    sortDirection: 'asc',
+    header: [
+      {
+        value: 'Student'
+      }
+    ],
+    rows: []
+  },
   selectedGroupId: 1,
-  sortDirection: 'asc'
 }
 
 export default initialState

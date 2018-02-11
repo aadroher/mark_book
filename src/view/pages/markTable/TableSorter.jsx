@@ -8,13 +8,10 @@ const TableSorter = props => {
   const icon = props.direction === 'asc'
     ? faSortDown
     : faSortUp
-  const nextDirection = props.direction === 'asc'
-    ? 'desc'
-    : 'asc'
 
   const onClick = e => {
     e.preventDefault()
-    props.onSorterClick(nextDirection)
+    props.onSorterClick(props.nextDirection)
   }
 
   return (
