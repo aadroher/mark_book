@@ -1,6 +1,6 @@
 import React from 'react'
-
 import styles from './MarkTable.module.css'
+import MarkTableSorter from '../../../intent/containers/MarkTableSorter'
 
 const StudentsHeader = ({cell}) =>
   <th scope='col' className={styles['student-column']}>
@@ -18,16 +18,18 @@ const ActivityHeader = ({cell}) =>
 
 const Header = ({header}) =>
   <thead>
-    <tr>
-      <th></th>
-      {
-        header.map((cell, i) =>
-          i === 0
-            ? <StudentsHeader cell={cell} key={i}/>
-            : <ActivityHeader cell={cell} key={i}/>
-        )
-      }
-    </tr>
+  <tr>
+    <th className={styles['row-num-column']}>
+      <MarkTableSorter/>
+    </th>
+    {
+      header.map((cell, i) =>
+        i === 0
+          ? <StudentsHeader cell={cell} key={i}/>
+          : <ActivityHeader cell={cell} key={i}/>
+      )
+    }
+  </tr>
   </thead>
 
 const RowNumCell = ({i}) =>
@@ -45,32 +47,30 @@ const MarkCell = ({cell}) =>
     {cell.value}
   </td>
 
-const tableBody = rows =>
+const TableBody = ({rows}) =>
   <tbody>
-    {rows
-      .map((row, i) =>
-        <tr key={i}>
-          <RowNumCell i={i + 1}/>
-          {
-            row.map((cell, j) =>
-              j === 0
-                ? <StudentCell {...{cell}} key={`${i}-${j}`}/>
-                : <MarkCell {...{cell}} key={`${i}-${j}`}/>
-            )
-          }
-        </tr>
-      )
-    }
+  {rows
+    .map((row, i) =>
+      <tr key={i}>
+        <RowNumCell i={i + 1}/>
+        {
+          row.map((cell, j) =>
+            j === 0
+              ? <StudentCell {...{cell}} key={`${i}-${j}`}/>
+              : <MarkCell {...{cell}} key={`${i}-${j}`}/>
+          )
+        }
+      </tr>
+    )
+  }
   </tbody>
 
 
 const MarkTable = props => {
-  // const header = props.header
-  const rows = props.rows
   return (
     <table className={styles['mark-table']}>
       <Header {...props}/>
-      {tableBody(rows)}
+      <TableBody {...props}/>
     </table>
   )
 }

@@ -32,28 +32,28 @@ const initialState = {
     enrolments: [
       {
         id: 1,
-        student_id: 1,
-        group_id: 1,
+        studentId: 1,
+        groupId: 1,
       },
       {
         id: 2,
-        student_id: 2,
-        group_id: 1,
+        studentId: 2,
+        groupId: 1,
       },
       {
         id: 3,
-        student_id: 2,
-        group_id: 2,
+        studentId: 2,
+        groupId: 2,
       },
       {
         id: 4,
-        student_id: 3,
-        group_id: 2,
+        studentId: 3,
+        groupId: 2,
       },
       {
         id: 5,
-        student_id: 3,
-        group_id: 1,
+        studentId: 3,
+        groupId: 1,
       }
     ],
 
@@ -61,31 +61,41 @@ const initialState = {
       {
         id: 1,
         name: 'Level assessment test',
-        group_id: 1
+        groupId: 1
       },
       {
         id: 2,
         name: 'Mid term exam',
-        group_id: 1
+        groupId: 1
       },
       {
         id: 3,
         name: 'Dissertation',
-        group_id: 1
+        groupId: 1
       },
       {
         id: 4,
         name: 'Final Exam',
-        group_id: 1
+        groupId: 1
       },
       {
         id: 4,
         name: 'Activity 1',
-        group_id: 2
+        groupId: 2
       }
     ]
+
   },
-  selectedGroupId: 1
+  markTable: {
+    sortDirection: 'asc',
+    header: [
+      {
+        value: 'Student'
+      }
+    ],
+    rows: []
+  },
+  selectedGroupId: 1,
 }
 
 export default initialState
