@@ -11,7 +11,7 @@ import createHistory from 'history/createBrowserHistory'
 import { Route } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
-import rootReducer from './model/root'
+import rootReducer from './model/reducers/root'
 
 import './view/styles/index.css'
 import App from './view/layouts/default/App'

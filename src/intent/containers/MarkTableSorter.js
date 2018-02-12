@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import TableSorter from '../../view/pages/markTable/TableSorter'
-import {studentsSort} from '../../model/stores/markTable'
+import {studentsSort} from '../../model/reducers/markTable'
 
 const mapStateToProps = state => {
   const direction = state.markTable.sortDirection

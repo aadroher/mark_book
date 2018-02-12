@@ -7,10 +7,7 @@ import TopBar from './TopBar'
 
 import styles from './App.module.css'
 
-const getPath = group =>
-  `/groups/${group.id}`
-
-const App = ({history, state}) =>
+const App = ({ history }) =>
   <ConnectedRouter history={history}>
     <div className={styles['app-container']}>
       <TopBar/>
@@ -22,10 +19,8 @@ const App = ({history, state}) =>
       <div>
         <div>
           <Route
-            sensitive
             path='/groups/:id'
-            component={GroupMarkTable}
-            onEnter={(a) => { console.log(a) }}
+            children={props => <GroupMarkTable {...props} />}
           />
         </div>
       </div>
