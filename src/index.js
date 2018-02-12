@@ -7,13 +7,26 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
+import createHistory from 'history/createBrowserHistory'
+import { Route } from 'react-router'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+
 import rootReducer from './model/root'
 
 import './view/styles/index.css'
 import App from './view/layouts/default/App'
 import registerServiceWorker from './registerServiceWorker'
 
-const middleware = applyMiddleware(createLogger(), thunk)
+// Create a history of your choosing (we're using a browser history in this case)
+const history = createHistory()
+// Build the middleware for intercepting and dispatching navigation actions
+// const middleware = routerMiddleware(history)
+
+const middleware = applyMiddleware(
+  createLogger(),
+  thunk,
+  routerMiddleware(history)
+)
 const reduxDebugger = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const composeWithParams = reduxDebugger
   ? compose(middleware, reduxDebugger)
@@ -26,7 +39,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App history={history} state={store.getState()} />
   </Provider>,
   document.getElementById('root')
 )

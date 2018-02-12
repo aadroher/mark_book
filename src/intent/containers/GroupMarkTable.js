@@ -1,5 +1,7 @@
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import MarkTable from '../../view/pages/markTable/MarkTable'
+import {groupSelect, studentsSort} from "../../model/stores/markTable"
 
 const minDimensions = {
   rows: 40,
@@ -73,23 +75,39 @@ const addPadding = markTable => {
   return {header, rows}
 }
 
-const mapStateToProps = state =>
+class GroupMarkTable extends Component {
+
+  componentDidMount() {
+    const groupId = this.props.match.params.id
+    this.props.selectGroup(groupId)
+  }
+
+  render() {
+    return <MarkTable {...this.props}/>
+  }
+
+}
+
+const mapStateToProps = ({ markTable }) =>
   [
     formatHeaders,
     formatStudentCells,
     addPadding
   ].reduce((markTable, f) =>
       f(markTable)
-    , state.markTable)
+    , markTable)
 
 
-const mapDispatchToProps = state => (
-  {}
-)
+const mapDispatchToProps = dispatch => ({
+  selectGroup: id => {
+    dispatch(groupSelect({id}))
+    dispatch(studentsSort({direction: 'asc'}))
+  }
+})
 
-const GroupMarkTable = connect(
+const container = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MarkTable)
+)(GroupMarkTable)
 
-export default GroupMarkTable
+export default container
