@@ -69,7 +69,8 @@ const updateMarkTable = (state, action) => {
   })
 }
 
-const sortRowsByStudentName = (state, direction) => {
+const sortRowsByStudentName = (state, action) => {
+  const direction = action.payload.direction
   const sortStudentComparator = (s0, s1) => {
     const precedence = direction === 'asc'
       ? {fst: s0, snd: s1}

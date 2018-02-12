@@ -1,8 +1,8 @@
-import markTable from '../../../model/stores/markTable'
+import markTable from '../markTable'
 import {
   groupSelect,
   studentsSort
-} from "../../../model/stores/markTable"
+} from "../markTable"
 
 const getMockedState = selectedGroupId => ({
   resources: {
