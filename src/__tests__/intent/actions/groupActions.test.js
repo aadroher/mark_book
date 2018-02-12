@@ -1,18 +1,12 @@
-import types from '../../../intent/actions/types'
-import { selectGroup } from '../../../intent/actions/groupActions'
+import { groupSelect } from '../../../model/stores/markTable'
 
 describe('Group actions', () => {
 
   describe('select group', () => {
 
-    it('has the right type' , () => {
-      const action = selectGroup()
-      expect(action.type).toBe(types.SELECT_GROUP)
-    })
-
     it('payload contains the right id value', () => {
       const expectedId = 1984
-      const action = selectGroup({id: expectedId})
+      const action = groupSelect({id: expectedId})
       expect(action.payload.id).toBe(expectedId)
     })
 

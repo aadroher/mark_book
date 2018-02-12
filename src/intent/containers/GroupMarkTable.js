@@ -6,6 +6,25 @@ const minDimensions = {
   columns: 30
 }
 
+const getActivityCell = activity => ({
+  value: activity.name
+})
+
+const addStudentsColumn = header =>
+  [
+    {
+      value: 'Student'
+    },
+    ...header
+  ]
+
+const formatHeaders = markTable =>
+  Object.assign({}, markTable, {
+    header: addStudentsColumn(
+      markTable.header.map(getActivityCell)
+    )
+  })
+
 const getStudentCell = student => ({
   value: `${student.surname}, ${student.name}`
 })
@@ -56,6 +75,7 @@ const addPadding = markTable => {
 
 const mapStateToProps = state =>
   [
+    formatHeaders,
     formatStudentCells,
     addPadding
   ].reduce((markTable, f) =>

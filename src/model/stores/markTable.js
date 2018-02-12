@@ -1,21 +1,32 @@
-import types from '../../intent/actions/types'
-import initialState from '../store/initialState'
+import {createAction, handleActions} from 'redux-actions'
 
-const getHeader = (state, groupId) => {
-  const activities = state.resources.activities
-    .filter(activity =>
-      activity.group_id === groupId
+import initialState from './initialState'
+
+// Actions
+const getActionName = name =>
+  `mark_book/markTable/${name}`
+
+const GROUP_SELECT = getActionName('GROUP_SELECT')
+const STUDENTS_SORT = getActionName('STUDENTS_SORT')
+
+const groupSelect = createAction(GROUP_SELECT)
+const studentsSort = createAction(STUDENTS_SORT)
+
+// State
+
+
+// Reducers
+const getGroupEnrolments = (state, selectedGroupId) =>
+  state.resources.enrolments
+    .filter(enrolment =>
+      enrolment.groupId === selectedGroupId
     )
-    .map(activity => ({
-      value: activity.name
-    }))
 
-  return [
-    {value: 'Student'},
-    ...activities
-  ]
-}
-
+const getHeader = (state, groupId) =>
+  state.resources.activities
+    .filter(activity =>
+      activity.groupId === groupId
+    )
 
 const getAssessmentCell = activity => ({
   value: ''
@@ -26,7 +37,7 @@ const getStudentRows = (state, groupEnrolments) => {
   const enrolmentsWithStudents = groupEnrolments.map(enrolment => {
     const [student] = state.resources.students
       .filter(student =>
-        student.id === enrolment.student_id
+        student.id === enrolment.studentId
       )
     return Object.assign({}, enrolment, {student})
   })
@@ -36,7 +47,7 @@ const getStudentRows = (state, groupEnrolments) => {
       const {student} = enrolment
       const activities = state.resources.activities
         .filter(activity =>
-          activity.group_id === state.selectedGroupId
+          activity.groupId === state.selectedGroupId
         )
         .map(getAssessmentCell)
       return [student, ...activities]
@@ -44,12 +55,9 @@ const getStudentRows = (state, groupEnrolments) => {
 
 }
 
-const selectGroup = (state, selectedGroupId) => {
-  const groupEnrolments = state.resources.enrolments
-    .filter(enrolment =>
-      enrolment.group_id === selectedGroupId
-    )
-
+const updateMarkTable = (state, action) => {
+  const selectedGroupId = action.payload.id
+  const groupEnrolments = getGroupEnrolments(state, selectedGroupId)
   const header = getHeader(state, selectedGroupId)
   const rows = getStudentRows(state, groupEnrolments)
 
@@ -86,15 +94,16 @@ const sortRowsByStudentName = (state, direction) => {
   })
 }
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.SELECT_GROUP:
-      return selectGroup(state, action.payload.id)
-    case types.SORT_STUDENTS:
-      return sortRowsByStudentName(state, action.payload.direction)
-    default:
-      return Object.assign({}, state)
-  }
+
+const reducer = handleActions({
+  [GROUP_SELECT]: updateMarkTable,
+  [STUDENTS_SORT]: sortRowsByStudentName
+}, initialState)
+
+
+export {
+  groupSelect,
+  studentsSort
 }
 
-export default rootReducer
+export default reducer

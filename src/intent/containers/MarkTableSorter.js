@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import TableSorter from '../../view/pages/markTable/TableSorter'
-import {sortStudents} from '../actions/groupActions'
+import {studentsSort} from '../../model/stores/markTable'
 
 const mapStateToProps = state => {
   const direction = state.markTable.sortDirection
@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   onSorterClick: direction => {
-    dispatch(sortStudents({direction}))
+    dispatch(studentsSort({direction}))
   }
 })
 

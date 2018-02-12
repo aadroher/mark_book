@@ -1,7 +1,8 @@
 import {connect} from 'react-redux'
 import ButtonSelector from '../../view/pages/markTable/ButtonSelector'
 
-import {selectGroup, sortStudents} from '../actions/groupActions'
+import {studentsSort} from '../../model/stores/markTable'
+import {groupSelect} from "../../model/stores/markTable"
 
 const mapStateToProps = state => ({
   options: state.resources.groups.map(group => ({
@@ -13,8 +14,8 @@ const mapStateToProps = state => ({
 
 const mapDispatechToProps = dispatch => ({
   onGroupNameClick: id => {
-    dispatch(selectGroup({ id }))
-    dispatch(sortStudents( { direction: 'asc' } ))
+    dispatch(groupSelect({ id }))
+    dispatch(studentsSort( { direction: 'asc' } ))
   }
 })
 
