@@ -111,11 +111,32 @@ const addPadding = markTable => {
   return {header, rows}
 }
 
+const sortRowsByStudentName = (rows, direction) => {
+  const sortStudentComparator = (s0, s1) => {
+    const precedence = direction === 'asc'
+      ? {fst: s0, snd: s1}
+      : {fst: s1, snd: s0}
+    return precedence.fst.surname.localeCompare(
+      precedence.snd.surname
+    )
+  }
+
+  return [...rows].sort((r0, r1) => {
+    const [s0] = r0
+    const [s1] = r1
+    return sortStudentComparator(s0, s1)
+  })
+}
+
 const getMarkTable = ({ markTable, resources }, match) => {
   const groupId = parseInt(((match || {}).params || {}).id)
   const groupEnrolments = getGroupEnrolments(resources, groupId)
   const header = getHeader(resources, groupId)
-  const rows = getStudentRows(resources, groupId, groupEnrolments)
+  const rows = sortRowsByStudentName(
+    getStudentRows(resources, groupId, groupEnrolments),
+    markTable.sortDirection
+  )
+
 
   return {header, rows}
 }

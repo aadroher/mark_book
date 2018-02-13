@@ -110,7 +110,6 @@ const setSortDirection = (state, action) => {
 }
 
 const reducer = handleActions({
-  [GROUP_SELECT]: selectGroup,
   [SORT_DIRECTION_SET]: setSortDirection
 }, initialState.markTable)
 

@@ -88,7 +88,6 @@ const initialState = {
   },
   markTable: {
     sortDirection: 'asc',
-    groupId: 1
   }
 }
 
