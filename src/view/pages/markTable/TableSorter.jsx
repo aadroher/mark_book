@@ -1,13 +1,17 @@
 import React from 'react'
 import styles from './TableSorter.module.css'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faSortDown, faSortUp } from '@fortawesome/fontawesome-free-solid'
+import { faCaretUp } from '@fortawesome/fontawesome-free-solid'
 
 const TableSorter = props => {
 
-  const icon = props.direction === 'asc'
-    ? faSortDown
-    : faSortUp
+  const icon = faCaretUp
+
+  const rotationString =
+    props.direction === 'asc'
+      ? ''
+      : 'rotate-180'
+  const transformString = `down-6 ${rotationString}`
 
   const onClick = e => {
     e.preventDefault()
@@ -15,15 +19,18 @@ const TableSorter = props => {
   }
 
   return (
-    <a
-      href='#'
+    <button
+      type='button'
       className={styles['table-sorter']}
-      {...{ onClick }}
+      onClick={onClick}
     >
       <FontAwesomeIcon
         icon={icon}
+        // rotation={rotationDeg}
+        transform={transformString}
+
       />
-    </a>
+    </button>
   )
 }
 

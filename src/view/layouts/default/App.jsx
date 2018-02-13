@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { ConnectedRouter } from 'react-router-redux'
 import GroupSelector from '../../../intent/containers/GroupSelector'
 import GroupMarkTable from '../../../intent/containers/GroupMarkTable'
 import TopBar from './TopBar'
