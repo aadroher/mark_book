@@ -7,10 +7,10 @@ const getActionName = name =>
   `mark_book/markTable/${name}`
 
 const GROUP_SELECT = getActionName('GROUP_SELECT')
-const STUDENTS_SORT = getActionName('STUDENTS_SORT')
+const SORT_DIRECTION_SET = getActionName('SORT_DIRECTION_SET')
 
 const groupSelect = createAction(GROUP_SELECT)
-const studentsSort = createAction(STUDENTS_SORT)
+const studentsSort = createAction(SORT_DIRECTION_SET)
 
 // State
 
@@ -81,25 +81,37 @@ const sortRowsByStudentName = (state, action) => {
   }
 
   const sortDirection = direction
-  const rows = [...state.markTable.rows].sort((r0, r1) => {
+  const rows = [...state.rows].sort((r0, r1) => {
     const [s0] = r0
     const [s1] = r1
     return sortStudentComparator(s0, s1)
   })
 
   return Object.assign({}, state, {
-    markTable: Object.assign({}, state.markTable, {
+    markTable: Object.assign({}, state, {
       sortDirection,
       rows
     })
   })
 }
 
+const selectGroup = (state, action) => {
+  const selectedGroupId = action.payload.id
+  return Object.assign({}, state, {
+    selectedGroupId
+  })
+}
+
+const setSortDirection = (state, action) => {
+  const sortDirection = action.payload.direction
+  return Object.assign({}, state, {
+    sortDirection
+  })
+}
 
 const reducer = handleActions({
-  [GROUP_SELECT]: updateMarkTable,
-  [STUDENTS_SORT]: sortRowsByStudentName
-}, initialState)
+  [SORT_DIRECTION_SET]: setSortDirection
+}, initialState.markTable)
 
 
 export {
