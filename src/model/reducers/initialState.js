@@ -88,6 +88,10 @@ const initialState = {
   },
   markTable: {
     sortDirection: 'asc',
+    editionCellCoordinates: {
+      column: null,
+      row: null,
+    }
   }
 }
 

@@ -135,8 +135,6 @@ const getMarkTable = ({ markTable, resources }, match) => {
     getStudentRows(resources, groupId, groupEnrolments),
     markTable.sortDirection
   )
-
-
   return {header, rows}
 }
 

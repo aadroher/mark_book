@@ -20,12 +20,6 @@
     }
   }
 
-  .student-column {
-    @extend .text-truncate;
-    width: $studentCellWidth;
-    max-width: $studentCellWidth;
-  }
-
   .row-num-column {
     text-align: right;
   }
