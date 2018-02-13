@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
 import createHistory from 'history/createBrowserHistory'
-import { Route } from 'react-router'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { routerMiddleware } from 'react-router-redux'
 
 import rootReducer from './model/reducers/root'
 

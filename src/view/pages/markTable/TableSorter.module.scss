@@ -3,5 +3,8 @@
 
 
 .table-sorter {
+  @extend .btn;
+  @extend .btn-link;
+  @extend .btn-sm;
   color: $body-color;
 }

@@ -1,4 +1,3 @@
-import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import MarkTable from '../../view/pages/markTable/MarkTable'
 
@@ -129,7 +128,7 @@ const sortRowsByStudentName = (rows, direction) => {
 }
 
 const getMarkTable = ({ markTable, resources }, match) => {
-  const groupId = parseInt(((match || {}).params || {}).id)
+  const groupId = parseInt(((match || {}).params || {}).id, 10)
   const groupEnrolments = getGroupEnrolments(resources, groupId)
   const header = getHeader(resources, groupId)
   const rows = sortRowsByStudentName(
