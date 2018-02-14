@@ -63,6 +63,7 @@ const formatHeaders = markTable =>
   })
 
 const getStudentCell = student => ({
+  student,
   value: `${student.surname}, ${student.name}`
 })
 
@@ -83,6 +84,7 @@ const addColumnPadding = (items, paddingSize) =>
     ...new Array(paddingSize)
       .fill({})
       .map(() => ({
+        student: {},
         value: ' '
       }))
   ]
@@ -135,8 +137,6 @@ const getMarkTable = ({ markTable, resources }, match) => {
     getStudentRows(resources, groupId, groupEnrolments),
     markTable.sortDirection
   )
-
-
   return {header, rows}
 }
 

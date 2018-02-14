@@ -20,7 +20,8 @@ const App = ({ history }) =>
         <div>
           <Route
             path='/groups/:id'
-            children={props => <GroupMarkTable {...props} />}
+            component={GroupMarkTable}
+            // children={props => <GroupMarkTable {...props} />}
           />
         </div>
       </div>

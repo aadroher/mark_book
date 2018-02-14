@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../../styles/utils";
+@import "./MarkTable.module.scss";
+
+.student-cell {
+  @extend .text-truncate;
+  width: $studentCellWidth;
+  max-width: $studentCellWidth;
+  cursor: pointer;
+}
+

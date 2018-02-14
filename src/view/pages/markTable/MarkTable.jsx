@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './MarkTable.module.css'
 import MarkTableSorter from '../../../intent/containers/MarkTableSorter'
+import StudentCell from '../../../intent/containers/StudentCell'
+import EditableCell from './EditableCell'
 
 const StudentsHeader = ({cell}) =>
   <th scope='col' className={styles['student-column']}>
@@ -37,11 +39,6 @@ const RowNumCell = ({i}) =>
     {i}
   </td>
 
-const StudentCell = ({cell}) =>
-  <td className={styles['student-column']}>
-    {cell.value}
-  </td>
-
 const MarkCell = ({cell}) =>
   <td>
     {cell.value}
@@ -54,11 +51,18 @@ const TableBody = ({rows}) =>
       <tr key={i}>
         <RowNumCell i={i + 1}/>
         {
-          row.map((cell, j) =>
-            j === 0
-              ? <StudentCell {...{cell}} key={`${i}-${j}`}/>
-              : <MarkCell {...{cell}} key={`${i}-${j}`}/>
-          )
+          row.map((cell, j) => {
+            const updatedCell = Object.assign(cell, {
+              coordinates: {
+                column: j,
+                row: i
+              }
+            })
+            const key = `${j}-${i}`
+            return j === 0
+              ? <StudentCell cell={updatedCell} key={key}/>
+              : <MarkCell cell={updatedCell} key={key}/>
+          })
         }
       </tr>
     )
