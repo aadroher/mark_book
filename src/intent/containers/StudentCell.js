@@ -1,10 +1,11 @@
 import {connect} from 'react-redux'
-import MarkTable from '../../view/pages/markTable/EditableCell'
+import EditableCell from '../../view/pages/markTable/EditableCell'
 import {studentCellEdit} from '../../model/reducers/markTable'
+import {studentUpdate} from '../../model/reducers/resources'
 
 const getIsInEditionMode = ({editionCellCoordinates}, {coordinates}) =>
   editionCellCoordinates.column === coordinates.column
-  && editionCellCoordinates.row === coordinates.row
+    && editionCellCoordinates.row === coordinates.row
 
 const mapStateToProps = ({markTable}, {cell}) => {
   const isInEditionMode = getIsInEditionMode(markTable, cell)
@@ -15,12 +16,15 @@ const mapStateToProps = ({markTable}, {cell}) => {
 const mapDispatchToProps = dispatch => ({
   onStudentCellClick: coordinates => {
     dispatch(studentCellEdit(coordinates))
+  },
+  onStudentCellBlur: student => {
+    dispatch(studentUpdate(student))
   }
 })
 
 const StudentCell = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MarkTable)
+)(EditableCell)
 
 export default StudentCell

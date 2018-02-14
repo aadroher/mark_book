@@ -9,8 +9,10 @@ const getActionName = name =>
 const SORT_DIRECTION_SET = getActionName('SORT_DIRECTION_SET')
 const STUDENT_CELL_EDIT = getActionName('STUDENT_CELL_EDIT')
 
+
 const studentsSort = createAction(SORT_DIRECTION_SET)
 const studentCellEdit = createAction(STUDENT_CELL_EDIT)
+
 
 // State
 

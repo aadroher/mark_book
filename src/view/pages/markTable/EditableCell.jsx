@@ -5,13 +5,33 @@ class StudentCellInput extends React.Component {
   constructor(props) {
     super(props)
 
-    console.log(props)
+    const {value, studentId} = props
+    this.state = {value, studentId}
 
-    const {value} = props
-    this.state = {value}
+    const {onStudentCellBlur} = props
 
+    this.onStudentCellBlur = onStudentCellBlur.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
+  }
+
+  dispatchEdit() {
+    const {value} = this.state
+    const [surname, name] = value.split(',')
+      .map(token =>
+        !!token
+          ? token.trim()
+          : token
+      )
+    console.log({surname, name})
+    const student = {
+      id: this.state.studentId,
+      name: name || null,
+      surname: surname || null,
+    }
+    this.onStudentCellBlur({
+      value,
+      student
+    })
   }
 
   handleChange(event) {
@@ -19,8 +39,8 @@ class StudentCellInput extends React.Component {
     this.setState({value})
   }
 
-  handleBlur(event) {
-    console.log('lost focus')
+  componentWillUnmount() {
+    this.dispatchEdit()
   }
 
   render() {
@@ -36,7 +56,7 @@ class StudentCellInput extends React.Component {
 
 }
 
-const EditableCell = ({cell, onStudentCellClick}) =>
+const EditableCell = ({cell, onStudentCellClick, onStudentCellBlur}) =>
   <td
     className={styles['student-cell']}
     onClick={e => {
@@ -46,7 +66,13 @@ const EditableCell = ({cell, onStudentCellClick}) =>
   >
     {
       cell.isInEditionMode
-        ? <StudentCellInput value={cell.value}/>
+        ? (
+          <StudentCellInput
+            studentId={cell.student.id}
+            onStudentCellBlur={onStudentCellBlur}
+            value={cell.value}
+          />
+        )
         : cell.value
     }
   </td>

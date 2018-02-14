@@ -63,6 +63,7 @@ const formatHeaders = markTable =>
   })
 
 const getStudentCell = student => ({
+  student,
   value: `${student.surname}, ${student.name}`
 })
 
@@ -83,6 +84,7 @@ const addColumnPadding = (items, paddingSize) =>
     ...new Array(paddingSize)
       .fill({})
       .map(() => ({
+        student: {},
         value: ' '
       }))
   ]
