@@ -88,9 +88,14 @@ const initialState = {
   },
   markTable: {
     sortDirection: 'asc',
-    editionCellCoordinates: {
-      column: null,
-      row: null,
+    editionCell: {
+      student: {
+        id: null
+      },
+      coordinates: {
+        column: null,
+        row: null
+      }
     }
   }
 }

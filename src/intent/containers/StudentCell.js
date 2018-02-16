@@ -1,25 +1,34 @@
+import deepEqual from 'deep-equal'
 import {connect} from 'react-redux'
 import EditableCell from '../../view/pages/markTable/EditableCell'
-import {studentCellEdit} from '../../model/reducers/markTable'
+import {
+  studentCellStartEdit,
+  studentCellUpdate,
+  studentCellEndEdit
+} from '../../model/reducers/markTable'
 import {studentUpdate} from '../../model/reducers/resources'
 
-const getIsInEditionMode = ({editionCellCoordinates}, {coordinates}) =>
-  editionCellCoordinates.column === coordinates.column
-    && editionCellCoordinates.row === coordinates.row
+const getIsInEditionMode = ({editionCell}, cell) =>
+  editionCell.student.id
+    ? editionCell.student.id === cell.student.id
+    : deepEqual(editionCell.coordinates, cell.coordinates)
 
 const mapStateToProps = ({markTable}, {cell}) => {
   const isInEditionMode = getIsInEditionMode(markTable, cell)
-  return Object.assign(cell, { isInEditionMode })
+  return Object.assign(cell, {isInEditionMode})
 }
 
-
 const mapDispatchToProps = dispatch => ({
-  onStudentCellClick: coordinates => {
-    dispatch(studentCellEdit(coordinates))
+  onStudentCellClick: cell => {
+    dispatch(studentCellStartEdit({cell}))
+  },
+  onInputUpdate: value => {
+    dispatch(studentCellUpdate({value}))
   },
   onStudentCellBlur: student => {
     dispatch(studentUpdate(student))
-  }
+    dispatch(studentCellEndEdit())
+  },
 })
 
 const StudentCell = connect(

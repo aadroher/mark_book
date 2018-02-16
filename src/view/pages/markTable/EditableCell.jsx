@@ -8,8 +8,12 @@ class StudentCellInput extends React.Component {
     const {value, studentId} = props
     this.state = {value, studentId}
 
-    const {onStudentCellBlur} = props
+    const {
+      onInputUpdate,
+      onStudentCellBlur,
+    } = props
 
+    this.onInputUpdate = onInputUpdate.bind(this)
     this.onStudentCellBlur = onStudentCellBlur.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
@@ -22,7 +26,6 @@ class StudentCellInput extends React.Component {
           ? token.trim()
           : token
       )
-    console.log({surname, name})
     const student = {
       id: this.state.studentId,
       name: name || null,
@@ -37,6 +40,7 @@ class StudentCellInput extends React.Component {
   handleChange(event) {
     const {value} = event.target
     this.setState({value})
+    this.onInputUpdate({value})
   }
 
   componentWillUnmount() {
@@ -56,25 +60,37 @@ class StudentCellInput extends React.Component {
 
 }
 
-const EditableCell = ({cell, onStudentCellClick, onStudentCellBlur}) =>
-  <td
-    className={styles['student-cell']}
-    onClick={e => {
-      const {coordinates} = cell
-      onStudentCellClick({coordinates})
-    }}
-  >
-    {
-      cell.isInEditionMode
-        ? (
-          <StudentCellInput
-            studentId={cell.student.id}
-            onStudentCellBlur={onStudentCellBlur}
-            value={cell.value}
-          />
-        )
-        : cell.value
-    }
-  </td>
+const EditableCell = props => {
+
+  const {cell} = props
+  const {
+    onStudentCellClick,
+    onInputUpdate,
+    onStudentCellBlur
+  } = props
+
+  return (
+    <td
+      className={styles['student-cell']}
+      onClick={e => {
+        onStudentCellClick(cell)
+      }}
+    >
+      {
+        cell.isInEditionMode
+          ? (
+            <StudentCellInput
+              studentId={cell.student.id}
+              onStudentCellBlur={onStudentCellBlur}
+              onInputUpdate={onInputUpdate}
+              value={cell.value}
+            />
+          )
+          : cell.value
+      }
+    </td>
+  )
+}
+
 
 export default EditableCell
