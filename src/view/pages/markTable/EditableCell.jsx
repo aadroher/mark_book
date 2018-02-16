@@ -5,8 +5,16 @@ class StudentCellInput extends React.Component {
   constructor(props) {
     super(props)
 
-    const {value, studentId} = props
-    this.state = {value, studentId}
+    const {
+      value,
+      studentId,
+      student,
+    } = props
+
+    this.state = {
+      value,
+      student
+    }
 
     const {
       onInputUpdate,
@@ -19,20 +27,11 @@ class StudentCellInput extends React.Component {
   }
 
   dispatchEdit() {
-    const {value} = this.state
-    const [surname, name] = value.split(',')
-      .map(token =>
-        !!token
-          ? token.trim()
-          : token
-      )
-    const student = {
-      id: this.state.studentId,
-      name: name || null,
-      surname: surname || null,
-    }
+    const {
+      student
+    } = this.state
+    console.log(student)
     this.onStudentCellBlur({
-      value,
       student
     })
   }
@@ -69,9 +68,12 @@ const EditableCell = props => {
     onStudentCellBlur
   } = props
 
+  const className = cell.isInEditionMode
+    ? styles['in-edition']
+    : styles['student-cell']
   return (
     <td
-      className={styles['student-cell']}
+      className={className}
       onClick={e => {
         onStudentCellClick(cell)
       }}
@@ -79,12 +81,24 @@ const EditableCell = props => {
       {
         cell.isInEditionMode
           ? (
-            <StudentCellInput
-              studentId={cell.student.id}
-              onStudentCellBlur={onStudentCellBlur}
-              onInputUpdate={onInputUpdate}
-              value={cell.value}
-            />
+            <span>
+              <StudentCellInput
+                key={0}
+                studentId={cell.student.id}
+                onStudentCellBlur={onStudentCellBlur}
+                onInputUpdate={onInputUpdate}
+                value={cell.student.surname}
+              />
+              ,
+              <StudentCellInput
+                key={1}
+                studentId={cell.student.id}
+                onStudentCellBlur={onStudentCellBlur}
+                onInputUpdate={onInputUpdate}
+                value={cell.student.name}
+              />
+            </span>
+
           )
           : cell.value
       }

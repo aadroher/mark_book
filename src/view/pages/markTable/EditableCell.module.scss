@@ -9,3 +9,9 @@
   cursor: pointer;
 }
 
+.in-edition {
+  @extend .student-cell;
+  width: $studentCellWidth * 2;
+  max-width: $studentCellWidth * 2;
+}
+
